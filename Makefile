@@ -35,9 +35,11 @@ endif
 ifeq (,$(wildcard ./groundingdino_swint_ogc.pth))
 	wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth
 endif
-	docker run --gpus all -it --rm --net=host --privileged \
+	docker run --gpus all --net=host --privileged \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v "${PWD}":/home/appuser/working_dir \
 	-e DISPLAY=$DISPLAY \
 	--name=gsa \
-	--ipc=host -it gsa:v0
+	--expose 8005 \
+	--restart=always \
+	--ipc=host -d gsa:v0 flask run --host=0.0.0.0 --port=8005
