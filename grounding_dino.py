@@ -210,8 +210,6 @@ def run_dino(model, image_path, text_prompt, semb=False):
 
     size = image_pil.size
 
-    
-    boxes_filt, pred_phrases = check_if_roi(boxes_filt, pred_phrases, size)
     #semb
     # pred_phrases_cp = pred_phrases[:]
     # possible_labels = text_prompt.split(" . ")
@@ -222,6 +220,7 @@ def run_dino(model, image_path, text_prompt, semb=False):
     #         pred_phrases.append(label)
 
     if semb:
+        boxes_filt, pred_phrases = check_if_roi(boxes_filt, pred_phrases, size)
         pred_phrases_cp = pred_phrases[:]
         semb_materials = {
             "cardboard": "corrugated",

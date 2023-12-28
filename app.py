@@ -95,7 +95,7 @@ class DinoDetectAPIView(Resource):
 
         os.remove(path)
 
-        print(res)
+        app.logger.info(res)
         return res
 
 class RAMAPIView(Resource):
@@ -144,7 +144,7 @@ class RAMAPIView(Resource):
 
         os.remove(path)
 
-        print(res)
+        app.logger.info(res)
         return res
 
 class SembAPIView(Resource):
